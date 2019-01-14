@@ -5,8 +5,39 @@ body {
     color: white;
 }
 
+:focus{outline: none;}
+
+
 input {
     border-radius: 0 !important;
+}
+input[type="text"]{
+    color: #333;
+    box-sizing: border-box; 
+    letter-spacing: 1.2px;
+}
+
+
+.effect-2{
+    border: 0; 
+    padding: 7px 2px; 
+}
+
+.effect-2 ~ .focus-border{
+    position: absolute; 
+    top: 0; 
+    left: 50%; 
+    width: 0; 
+    height: 2px; 
+    background-color:#333; 
+    transition: 0.4s;
+    
+}
+.effect-2:focus ~ .focus-border{
+    
+    width: 100%; 
+    transition: 0.4s; 
+    left: 0;
 }
 
 .form-control:focus {

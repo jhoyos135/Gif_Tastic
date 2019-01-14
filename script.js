@@ -1,9 +1,9 @@
-var topics = ["Sad", "confused", "Love", "Happy", "Chill Out",
+let topics = ["Sad", "Confused", "Love", "Happy", "Chill Out",
 "Cry", "Yes", "No", "Excited", "Sorry",
-"Congratulations", "Sleepy", "Hello", "Ok", "Thank you",
+"Congratulations", "Sleepy", "Hello", "Ok", "Thank You",
 "Please", "Wink", "Hungry"];
-var numberOfGIFs = 10;
-var cutOffRating = "PG-13";
+let numberOfGIFs = 10;
+let maxRating = "PG-13";
 let gifContainer = document.querySelector('#gif-container');
 let buttonContainer = document.querySelector('#button-container');
 
@@ -13,7 +13,7 @@ let renderBtns = () => {
         let newButtons = `
             <button class="btn btn-secondary gif-button">
             ${topics[i]}
-            </button
+            </button>
         `
         buttonContainer.innerHTML += newButtons;
 
@@ -26,6 +26,12 @@ let renderBtns = () => {
                 // console.log(e.target.textContent)
                 fetch_gif(e.target.textContent);
             });
+            button.addEventListener('dblclick', (e) => {
+                
+                e.target.remove();
+
+                //TODO: save again to local Storage
+            });
         });
 
     };
@@ -36,13 +42,13 @@ let addButton = (show) => {
         topics.push(show);
         buttonContainer.innerHTML = '';
         renderBtns();
-
     }
+    //TODO: save to local storage
 }
 
 let fetch_gif = async (show) => {
 
-    var url = `https://api.giphy.com/v1/gifs/search?q=${show}&api_key=dc6zaTOxFJmzC&rating=${cutOffRating}&limit=${numberOfGIFs}`;
+    var url = `https://api.giphy.com/v1/gifs/search?q=${show}&api_key=dc6zaTOxFJmzC&rating=${maxRating}&limit=${numberOfGIFs}`;
     let res = await fetch(url);
     let gifs = await res.json();
     let json = gifs.data;
@@ -57,13 +63,17 @@ let fetch_gif = async (show) => {
 
 document.addEventListener('DOMContentLoaded', () => {
     renderBtns();
+
     document.querySelector('#submit').addEventListener('click', (e) => {
         e.preventDefault();
 
-        let favorites = document.querySelector('#favorites').value.trim();
+        let favorites = document.querySelector('#favorites');
         // console.log(favorites)
-        addButton(favorites);
+        addButton(favorites.value.trim());
         favorites.value = '';
 
+        //TODO: save to local storage
+
     });
+
 });
