@@ -14,3 +14,7 @@ input {
     border: none !important;
     box-shadow: none !important;
 }
+
+.gif-button {
+    margin: 2px;
+}
