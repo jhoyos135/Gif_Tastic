@@ -44,7 +44,7 @@ let addButton = (show) => {
         renderBtns();
     }
     //TODO: save to local storage
-}
+};
 
 let fetch_gif = async (show) => {
 
@@ -58,8 +58,9 @@ let fetch_gif = async (show) => {
     for(let i in json) {
         let data = json[i];
         console.log(data.images.original.url)
-    }
-}
+        //TODO: show gifs here!
+    };
+};
 
 document.addEventListener('DOMContentLoaded', () => {
     renderBtns();

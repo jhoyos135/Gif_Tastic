@@ -15,12 +15,13 @@ input[type="text"]{
     color: #333;
     box-sizing: border-box; 
     letter-spacing: 1.2px;
+    caret-color: pink;
 }
 
 
 .effect-2{
     border: 0; 
-    padding: 7px 2px; 
+    padding: 0px 5px; 
 }
 
 .effect-2 ~ .focus-border{
@@ -48,4 +49,8 @@ input[type="text"]{
 
 .gif-button {
     margin: 2px;
+}
+
+#submit.btn {
+    color: pink !important
 }
