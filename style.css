@@ -30,7 +30,7 @@ input[type="text"]{
     left: 50%; 
     width: 0; 
     height: 1px; 
-    background: linear-gradient(to right, rgba(30,87,153,0) 0%,rgba(51,51,51,1) 50%,rgba(125,185,232,0) 100%);
+    background: linear-gradient(to right, rgba(30,87,153,0) 0%,pink 50%,rgba(125,185,232,0) 100%);
     transition: 0.4s;
     
 }
@@ -98,4 +98,8 @@ input[type="text"]{
 }
 .each-gif:hover .rating {
     opacity: 1;
+}
+
+.page-link {
+    color: #333;
 }
