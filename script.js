@@ -2,20 +2,37 @@ let topics = ["Sad", "Confused", "Love", "Happy", "Chill Out",
 "Cry", "Yes", "No", "Excited", "Sorry",
 "Congratulations", "Sleepy", "Hello", "Ok", "Thank You",
 "Please", "Wink", "Hungry"];
-let numberOfGIFs = 10;
-let maxRating = "PG-13";
+let numberOfGIFs = 12;
+let maxRating = "pg-13";
 let gifContainer = document.querySelector('#gif-container');
 let buttonContainer = document.querySelector('#button-container');
 let title = document.querySelector('.title');
 
+// console.log(topics)
+
+// localStorage.setItem('topics', JSON.stringify(topics));
+
+let SaveDataToLocalStorage = (data) => {
+    var a = [];
+    a = JSON.parse(localStorage.getItem('topics'));
+    a.push(data);
+
+    localStorage.setItem('topics', JSON.stringify(a));
+    
+}
+
+let final_topics = JSON.parse(localStorage.getItem('topics'));
+// console.log(final_topics)
+
+
+
+
 let renderBtns = () => {
 
-
-    for(let i in topics) {
-        // console.log(topics[i])
+    for(let i in final_topics) {
         let newButtons = `
             <button class="btn btn-secondary gif-button">
-            ${topics[i]}
+            ${final_topics[i]}
             </button>
         `;
         buttonContainer.innerHTML += newButtons;
@@ -32,29 +49,48 @@ let renderBtns = () => {
             });
             button.addEventListener('dblclick', (e) => {
                 
-                e.target.remove();
+               
 
                 //TODO: save again to local Storage
+                // localStorage.removeItem(e.target.textContent.trim());
+                console.log(e.target.textContent.trim())
+
+                let target_text = e.target.textContent.trim();
+
+                // final_topics.splice( final_topics.indexOf(target_text), 1)
+
+                let target = final_topics.indexOf(target_text)
+                console.log(target)
+
+                let deleteFromArray = final_topics.splice(target,1)
+
+                console.log(deleteFromArray)
+
+                e.target.remove();
+                console.log(final_topics)
+
+                localStorage.setItem('topics', JSON.stringify(final_topics));
+
             });
         });
 
-        // let topics_copy = [...topics];
-        // console.log(topics_copy)
-        //TODO: save to local storage
-        // localStorage.setItem('topics_copy', JSON.stringify(topics_copy));
 
     };
+
 };
 
 let addButton = (show) => {
-    if(topics.indexOf(show) === -1) {
-        topics.push(show);
+    if(final_topics.indexOf(show) === -1) {
+
+        final_topics.push(show);
+
         buttonContainer.innerHTML = '';
+        console.log(final_topics)
         renderBtns();
+
+        SaveDataToLocalStorage(show)
+
     }
-    
-    //TODO: save to local storage
-    // localStorage.setItem("topics", JSON.stringify(topics));
 
 };
 
@@ -68,19 +104,24 @@ let fetch_gif = async (show) => {
     for(let i in json) {
         let data = json[i];
         // console.log(data)
-        //TODO: show gifs here!
+
+        //renders GIFS
         let img_html = `
         
         <div class="each-gif">
             <img class="gif-image" src="${data.images.fixed_height_still.url}" state="still" still-data=${data.images.fixed_height_still.url} animated-data=${data.images.fixed_height.url}  />
+            <p class="rating"> Rating: ${data.rating}</p>
         </div>
 
         `;
 
         gifContainer.innerHTML += img_html;
 
+        // Event when the each gif is click
         document.querySelectorAll('.gif-image').forEach( (gif) => {
+
             gif.addEventListener('click', (e) => {
+                e.stopPropagation();
                 // console.log(e.target)
                 let moving = e.target.getAttribute('animated-data');
                 let still = e.target.getAttribute('still-data');
@@ -90,7 +131,7 @@ let fetch_gif = async (show) => {
                     e.target.setAttribute('src', moving )
                 } else {
                     e.target.setAttribute('state', 'still');
-                    e.target.setAttribute('src', still)
+                    e.target.setAttribute('src', still);
                 }
             });
         });
@@ -99,21 +140,33 @@ let fetch_gif = async (show) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+
     renderBtns();
     fetch_gif('hello');
+    
+    let run = () => {
+        location.reload()
+        return localStorage.setItem('topics', JSON.stringify(topics));
+    }
+    if(localStorage.getItem('topics') === null) {
+
+        run()
+
+    }
+
+
+    // topics.push(final_topics)
+
     document.querySelector('#submit').addEventListener('click', (e) => {
         e.preventDefault();
 
         let favorites = document.querySelector('#favorites');
         // console.log(favorites)
+
+        // console.log(topics)
         addButton(favorites.value.trim());
         favorites.value = '';
         
-
-        // console.log(saved_topics)
-
-        // saved_topics = JSON.parse(localStorage.getItem("topics"));
-        // console.log(saved_topics)
     });
 
 });

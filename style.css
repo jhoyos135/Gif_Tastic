@@ -64,7 +64,14 @@ input[type="text"]{
 }
 
 .each-gif {
-    flex-basis: 33.3%;
+    flex-basis: 100%;
+    position: relative;
+}
+
+@media all and (min-width: 750px) {
+    .each-gif {
+        flex-basis: 33.3%;
+    }
 }
 
 .gif-image {
@@ -74,4 +81,21 @@ input[type="text"]{
     cursor: pointer;
     padding: 10px;
 
+}
+
+
+.rating {
+    font-size: 1.5em;
+    position: absolute;
+    top: 0%;
+    /* transform: translateY(-50%); */
+    background: #333;
+    padding: 15px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.1s ease-out;
+    margin: 10px;;
+}
+.each-gif:hover .rating {
+    opacity: 1;
 }
