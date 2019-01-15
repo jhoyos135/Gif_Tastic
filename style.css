@@ -103,3 +103,9 @@ input[type="text"]{
 .page-link {
     color: #333;
 }
+.page-link:focus {
+    box-shadow: none !important;
+}
+.pagination {
+    justify-content: center;
+}

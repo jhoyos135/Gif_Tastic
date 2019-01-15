@@ -11,17 +11,6 @@ let title = document.querySelector('.title');
 let next = document.querySelector('.next')
 let prev = document.querySelector('.prev');
 
-let update_offset = () => {
-    offset = offset + 13;
-}
-
-next.addEventListener('click', function() {
-    update_offset();
-    fetch_gif(title.textContent)
-    gifContainer.innerHTML = '';
-
-});
-
 //save to localstorage function
 let SaveDataToLocalStorage = (data) => {
     var a = [];
@@ -133,6 +122,29 @@ let fetch_gif = async (show) => {
         });
     };  
 };
+
+// Pagination functionality
+let page_up = () => {
+    offset = offset + 13;
+};
+let page_down = () => {
+    offset = offset - 13;
+};
+
+next.addEventListener('click', () => {
+    page_up();
+    fetch_gif(title.textContent)
+    gifContainer.innerHTML = '';
+
+});
+
+prev.addEventListener('click', () => {
+    if(offset !== 1) {
+        page_down();
+        fetch_gif(title.textContent)
+        gifContainer.innerHTML = '';
+    }
+});
 
 document.addEventListener('DOMContentLoaded', () => {
 
