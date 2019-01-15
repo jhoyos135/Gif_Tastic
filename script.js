@@ -60,16 +60,17 @@ let renderBtns = () => {
                 // final_topics.splice( final_topics.indexOf(target_text), 1)
 
                 let target = final_topics.indexOf(target_text)
-                console.log(target)
+                // console.log(target)
 
-                let deleteFromArray = final_topics.splice(target,1)
-
-                console.log(deleteFromArray)
+                final_topics.splice(target,1)
+    
+                // console.log(deleteFromArray)
 
                 e.target.remove();
                 console.log(final_topics)
 
                 localStorage.setItem('topics', JSON.stringify(final_topics));
+
 
             });
         });
