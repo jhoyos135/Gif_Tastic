@@ -19,27 +19,27 @@
                 <div class="display-3">Gif Generator</div>
             </div>
         </div>
-        <div class="row">
+        <div class="row justify-content-center">
 
-                <div class="col-md-7 text-center mb-3">
-                    <div id="button-container" class="dotted-border"></div>
-
-                    <i class="d-block mt-2">(double click button to delete)</i>
-                </div>
-
-        <div class="col-md-5 text-center">
+            <div class="col-md-10 text-center mb-3 border">
+                    <i class="d-block mb-2">(double click button to delete)</i>
+                <div id="button-container" class="dotted-border"></div>
                 <form class="mt-3">
-                    <div class="input-group-append">
-                    <input type="text" name="favorites" id="favorites" class="effect-2 form-control" placeholder="Save your Favorite..." autocomplete="off">
-                    <span class="focus-border"></span>
-                    <div class="input-group-append">
-                            <input type="submit" value="Submit" class ="btn btn-secondary" id="submit">
-                    </div>
-                    </div>
+                        <div class="input-group-append">
+                        <input type="text" name="favorites" id="favorites" class="effect-2 form-control" placeholder="Save your Favorite..." autocomplete="off" onkeyup="success()">
+                        <span class="focus-border"></span>
+                        <div class="input-group-append">
+                            <input type="submit" value="Submit" class ="btn btn-secondary submit" id="submit" disabled>
+                        </div>
+                        </div>
                 </form>
+            </div>
+
+        <!-- <div class="col-md-5 text-center">
+
+        </div> -->
         </div>
-        </div>
-        <hr />
+        <!-- <hr /> -->
 
 <nav aria-label="Page navigation">
         <ul class="pagination">
@@ -48,11 +48,11 @@
         </ul>
 </nav>
 
-<div class="row mt-4">
-        <div class="col-md-12 text-center">
+<div class="row mt-4 justify-content-center">
+        <div class="col-md-11 text-center">
                 <h2 class="title" style="width: 100%">Hello</h2>
                 <div id="gif-container" class="col-md-12 mb-4"></div>
-            </div>
+        </div>
 </div>  
 
     </div>

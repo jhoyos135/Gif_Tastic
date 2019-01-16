@@ -10,6 +10,7 @@ let buttonContainer = document.querySelector('#button-container');
 let title = document.querySelector('.title');
 let next = document.querySelector('.next')
 let prev = document.querySelector('.prev');
+let favorites = document.querySelector('#favorites');
 
 //save to localstorage function
 let SaveDataToLocalStorage = (data) => {
@@ -44,16 +45,14 @@ let renderBtns = () => {
             });
             button.addEventListener('dblclick', (e) => {
 
-                // localStorage.removeItem(e.target.textContent.trim());
-                console.log(e.target.textContent.trim())
+                // console.log(e.target.textContent.trim())
                 let target_text = e.target.textContent.trim();
-                // final_topics.splice( final_topics.indexOf(target_text), 1)
                 let target = final_topics.indexOf(target_text)
                 // console.log(target)
                 final_topics.splice(target, 1)
                 // console.log(deleteFromArray)
                 e.target.remove();
-                console.log(final_topics)
+                // console.log(final_topics)
 
                 localStorage.setItem('topics', JSON.stringify(final_topics));
 
@@ -69,7 +68,7 @@ let addButton = (show) => {
         final_topics.push(show);
 
         buttonContainer.innerHTML = '';
-        console.log(final_topics)
+        // console.log(final_topics)
         renderBtns();
 
         SaveDataToLocalStorage(show);
@@ -88,13 +87,13 @@ let fetch_gif = async (show) => {
 
     for(let i in json) {
         let data = json[i];
-        // console.log(data)
+        // console.log(data.images)
 
         //renders GIFS
         let img_html = `
         
         <div class="each-gif">
-            <img class="gif-image" src="${data.images.fixed_height_still.url}" state="still" still-data=${data.images.fixed_height_still.url} animated-data=${data.images.fixed_height.url}  />
+            <img class="gif-image" src="${data.images.original_still.url}" state="still" still-data=${data.images.original_still.url} animated-data=${data.images.original.url} />
             <p class="rating"> Rating: ${data.rating}</p>
         </div>
 
@@ -157,14 +156,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return localStorage.setItem('topics', JSON.stringify(topics));
     }
     if(localStorage.getItem('topics') === null) {
-        run()
+        run();
     }
 
     document.querySelector('#submit').addEventListener('click', (e) => {
         e.preventDefault();
-
+        offset = 1;
         let favorites = document.querySelector('#favorites');
-        gifContainer.innerHTML = ''
+        gifContainer.innerHTML = '';
         title.textContent = favorites.value;
         fetch_gif(favorites.value);
         addButton(favorites.value.trim());
@@ -173,3 +172,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
+let success = () => {
+    let submit = document.querySelector('.submit');
+    if(favorites.value.length == 0 || favorites.value.length === '' ) { 
+           submit.disabled = true; 
+       } else { 
+           submit.disabled = false;
+
+       }
+   }

@@ -6,7 +6,9 @@ body {
 }
 
 :focus{outline: none;}
-
+::placeholder {
+    color: pink !important;
+}
 
 input {
     border-radius: 0 !important;
@@ -26,7 +28,7 @@ input[type="text"]{
 
 .effect-2 ~ .focus-border{
     position: absolute; 
-    top: 0; 
+    bottom: 0; 
     left: 50%; 
     width: 0; 
     height: 1px; 
@@ -45,15 +47,43 @@ input[type="text"]{
 
     border: none !important;
     box-shadow: none !important;
+    color: white !important;
 }
 
 .gif-button {
     margin: 2px;
 }
+#button-container .gif-button {
+    border-radius: 0 !important;
+    background: none !important;
+    border-color: white;
+
+}
+#button-container .gif-button:focus {
+    box-shadow: none !important;
+    border-color: pink !important;
+    color: pink !important;
+}
+#button-container .gif-button:hover {
+    border-color: pink !important;
+    color: pink !important;
+}
 
 #submit.btn {
     color: pink !important;
+    background: none !important;
+    border-color: pink !important;
     
+}
+#submit.btn:hover {
+    border-color: white !important;
+    color: white !important;
+}
+.form-control {
+    background: none !important;
+    color: pink !important;
+    border-left: 1px solid white !important;
+
 }
 
 #gif-container {
@@ -68,11 +98,7 @@ input[type="text"]{
     position: relative;
 }
 
-@media all and (min-width: 750px) {
-    .each-gif {
-        flex-basis: 33.3%;
-    }
-}
+
 
 .gif-image {
     width: 100%;
@@ -85,7 +111,7 @@ input[type="text"]{
 
 
 .rating {
-    font-size: 1.5em;
+    font-size: 1.5vw;
     position: absolute;
     top: 0%;
     /* transform: translateY(-50%); */
@@ -106,6 +132,38 @@ input[type="text"]{
 .page-link:focus {
     box-shadow: none !important;
 }
+.page-link:hover {
+    color: #333 !important;
+}
 .pagination {
     justify-content: center;
+}
+
+.border {
+    border: 1px solid white;
+    /* padding: 10px; */
+    border-bottom: none !important;
+}
+.border i {
+    color: pink;
+}
+
+.btn:disabled {
+    opacity: .3 !important;
+}
+#submit.btn:hover.btn:disabled {
+    border-color: pink !important;
+    color: pink !important;
+}
+
+@media all and (min-width: 750px) {
+    .each-gif {
+        flex-basis: 33.3%;
+    }
+}
+
+@media all and (max-width: 750px) {
+    .rating {
+        font-size: 1.5em !important;
+    }
 }
