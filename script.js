@@ -1,7 +1,7 @@
-let topics = ["Sad", "Confused", "Love", "Happy", "Chill Out",
-"Cry", "Yes", "No", "Excited", "Sorry",
-"Congratulations", "Sleepy", "Hello", "Ok", "Thank You",
-"Please", "Wink", "Hungry"];
+let topics = ["sad", "confused", "love", "happy", "chill out",
+"cry", "yes", "no", "excited", "sorry",
+"congratulations", "sleepy", "hello", "ok", "thank you",
+"please", "wink", "hungry"];
 let numberOfGIFs = 12;
 let offset = 1;
 let maxRating = "pg-13";
@@ -47,9 +47,9 @@ let renderBtns = () => {
 
                 // console.log(e.target.textContent.trim())
                 let target_text = e.target.textContent.trim();
-                let target = final_topics.indexOf(target_text)
+                let target = final_topics.indexOf(target_text);
                 // console.log(target)
-                final_topics.splice(target, 1)
+                final_topics.splice(target, 1);
                 // console.log(deleteFromArray)
                 e.target.remove();
                 // console.log(final_topics)
@@ -132,7 +132,7 @@ let page_down = () => {
 
 next.addEventListener('click', () => {
     page_up();
-    fetch_gif(title.textContent)
+    fetch_gif(title.textContent);
     gifContainer.innerHTML = '';
 
 });
@@ -140,7 +140,7 @@ next.addEventListener('click', () => {
 prev.addEventListener('click', () => {
     if(offset !== 1) {
         page_down();
-        fetch_gif(title.textContent)
+        fetch_gif(title.textContent);
         gifContainer.innerHTML = '';
     }
 });
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gifContainer.innerHTML = '';
         title.textContent = favorites.value;
         fetch_gif(favorites.value);
-        addButton(favorites.value.trim());
+        addButton(favorites.value.trim().toLowerCase());
         favorites.value = '';
         
     });
