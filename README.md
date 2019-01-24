@@ -1,8 +1,8 @@
-#api used:
+# api used:
 https://developers.giphy.com/
 
-#url:
+# url:
 https://jhoyos135.github.io/Gif_Tastic/
 
-#details:
+# details:
 you can search for your favorite gifs and save and delete your favorite.
