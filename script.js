@@ -78,7 +78,7 @@ let addButton = (show) => {
 
 let fetch_gif = async (show) => {
     
-    let url = `https://api.giphy.com/v1/gifs/search?q=${show}&api_key=dc6zaTOxFJmzC&rating=${maxRating}&limit=${numberOfGIFs}&offset=${offset}`;
+    let url = `https://api.giphy.com/v1/gifs/search?q=${show}&api_key=qs8JdHDGkOSsrfB4fYFOkdxlP1RRy2IW&rating=${maxRating}&limit=${numberOfGIFs}&offset=${offset}`;
     let res = await fetch(url);
     let gifs = await res.json();
     let json = gifs.data;
